@@ -13,8 +13,8 @@ spec:
         app: app
     spec:
       containers:
-      - name: project-management-api
-        image: docker.io/library/project-management-api:latest
+      - name: project-api
+        image: docker.io/library/project-api:latest
         imagePullPolicy: Never
         ports:
         - containerPort: 5000
