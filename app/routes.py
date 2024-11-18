@@ -53,3 +53,41 @@ def get_project(project_id):
         return {"error": "Estudiante no encontrado"}, 404
     project_data = project_schema.dump(project)
     return jsonify(project_data), 200
+
+@api.route('/students/<int:student_id>', methods=['PUT'])
+def update_student(student_id):
+    # Buscamos el estudiante por su ID
+    student = Student.query.get(student_id)
+    
+    if not student:
+        return {"error": "Estudiante no encontrado"}, 404
+    
+    # Obtenemos los datos de la solicitud (en formato JSON)
+    data = request.get_json()
+
+    # Actualizamos los campos del estudiante
+    student.name = data.get('name', student.name)
+    student.email = data.get('email', student.email)
+    student.age = data.get('age', student.age)
+    
+    # Guardamos los cambios en la base de datos
+    db.session.commit()
+    
+    # Serializamos el estudiante actualizado y lo devolvemos
+    student_data = student_schema.dump(student)
+    return jsonify(student_data), 200
+
+@api.route('/api/students/<int:student_id>', methods=['DELETE'])
+def delete_student(student_id):
+    # Buscamos el estudiante por su ID
+    student = Student.query.get(student_id)
+    
+    if not student:
+        return {"error": "Estudiante no encontrado"}, 404
+    
+    # Eliminamos al estudiante
+    db.session.delete(student)
+    db.session.commit()
+    
+    # Respondemos con un mensaje de éxito
+    return jsonify({"message": "Estudiante eliminado exitosamente"}), 200
