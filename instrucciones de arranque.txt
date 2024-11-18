@@ -1,0 +1,27 @@
+minikube start
+
+#entrar en el entorno de minikube
+& minikube -p minikube docker-env --shell powershell | Invoke-Expression
+
+#Crear imágen dentro de minikube
+docker build -t residencias:latest .
+
+#crear los servicios
+#base de datos
+kubectl apply -f mysql-pv.yaml
+kubectl apply -f mysql-deployment.yaml
+kubectl apply -f mysql-service.yaml
+#instancias kubernets
+kubectl create -f deployment.yaml
+kubectl create -f service.yaml
+
+#verificar que funcionan
+kubectl get pods
+
+#obtener el enlace para pruebas
+minikube service myapi-service
+
+#revisar que pasa
+kubectl logs <nombre del pod>
+
+minikube stop

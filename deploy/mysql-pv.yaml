@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv
+spec:
+  capacity:
+    storage: 1Gi  # Ajusta el tamaño según tus necesidades
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "D:/Bibliotecas/mysql"  # Ajusta este path a una ubicación accesible en la computadora
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

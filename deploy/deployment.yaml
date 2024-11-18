@@ -13,8 +13,8 @@ spec:
         app: app
     spec:
       containers:
-      - name: project-api
-        image: docker.io/library/project-api:latest
+      - name: residencias
+        image: docker.io/library/residencias:latest
         imagePullPolicy: Never
         ports:
         - containerPort: 5000
