@@ -50,7 +50,7 @@ def get_projects():
 def get_project(project_id):
     project = Project.query.get(project_id)
     if not project:
-        return {"error": "Estudiante no encontrado"}, 404
+        return {"error": "Proyecto no encontrado"}, 404
     project_data = project_schema.dump(project)
     return jsonify(project_data), 200
 
@@ -93,16 +93,16 @@ def delete_student(student_id):
 
 @api.route('/projects/<int:project_id>', methods=['PUT'])
 def update_project(project_id):
-    # Buscamos el estudiante por su ID
+    # Buscamos el proyecto por su ID
     project = Project.query.get(project_id)
     
     if not project:
-        return {"error": "Projecto no encontrado"}, 404
+        return {"error": "Proyecto no encontrado"}, 404
     
     # Obtenemos los datos de la solicitud (en formato JSON)
     data = request.get_json()
 
-    # Actualizamos los campos del estudiante
+    # Actualizamos los campos del proyecto
     project.title = data.get('title', project.title)
     project.description = data.get('description', project.description)
     project.student_id = data.get('student_id', project.student_id)
@@ -110,21 +110,21 @@ def update_project(project_id):
     # Guardamos los cambios en la base de datos
     db.session.commit()
     
-    # Serializamos el estudiante actualizado y lo devolvemos
+    # Serializamos el proyecto actualizado y lo devolvemos
     project_data = project_schema.dump(project)
     return jsonify(project_data), 200
 
 @api.route('/projects/<int:project_id>', methods=['DELETE'])
-def delete_student(project_id):
-    # Buscamos el estudiante por su ID
+def delete_project(project_id):
+    # Buscamos el proyecto por su ID
     project = Student.query.get(project_id)
     
     if not project:
-        return {"error": "Estudiante no encontrado"}, 404
+        return {"error": "Proyecto no encontrado"}, 404
     
-    # Eliminamos al estudiante
+    # Eliminamos al proyecto
     db.session.delete(project)
     db.session.commit()
     
     # Respondemos con un mensaje de éxito
-    return jsonify({"message": "Estudiante eliminado exitosamente"}), 200
+    return jsonify({"message": "Proyecto eliminado exitosamente"}), 200

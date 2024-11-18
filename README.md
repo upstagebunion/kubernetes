@@ -13,3 +13,6 @@ Pruebas realizadas con la imágen corriendo en kubernets (MiniKube) en 5 replica
 ![Prueba exitosa creación estudiante desde hoppscotch con la im](https://github.com/user-attachments/assets/62527e9e-90a8-46d1-84d6-7bdd8a2a315c)
 ![prueba exitosa get estudiante desde hoppscotch desde instancia corriendo en kubernets](https://github.com/user-attachments/assets/5ab4b88f-4f95-4a76-abde-034e9348ec2d)
 ![prueba exitosa post proyecto desde hoppscotch desde instancia corriendo en kubernets](https://github.com/user-attachments/assets/34b06605-3ffb-4cfe-91a0-1f99e82148a1)
+
+##Captura Prueba de las 5 replicas corriendo y la instancia de base de datos persistente para mantener consistencia entre replcias
+![5 pods corriendo (replicas)](https://github.com/user-attachments/assets/e3f0d6af-d0a4-42b5-bec3-40681abf36c5)
